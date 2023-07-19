@@ -1,15 +1,14 @@
 package com.befrank.casedeveloperjava.service;
 
+import com.befrank.casedeveloperjava.Deelnemer;
 import java.math.BigDecimal;
+import org.springframework.lang.NonNull;
 
 public interface PensioenService {
 
-  /**
-   * @param parttimePercentage - value between 0 and 1
-   * @param premiumPercentage - value between 0 and 1
-   */
-  BigDecimal calculateYearlyContribution(
-      BigDecimal salary, BigDecimal franchise, BigDecimal parttimePercentage, BigDecimal premiumPercentage);
+  @NonNull
+  BigDecimal calculateYearlyContribution(Deelnemer deelnemer);
 
-
+  @NonNull
+  BigDecimal calculateTotalEstimateForEndDate(Deelnemer deelnemer, Integer plannedRetirementAge);
 }

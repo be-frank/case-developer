@@ -2,11 +2,11 @@ package com.befrank.casedeveloperjava;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import java.math.BigDecimal;
-import java.time.LocalDate;
 
 @Entity
 public class Deelnemer {
@@ -30,7 +30,7 @@ public class Deelnemer {
     // dienstverband
     private LocalDate serviceStartDate;
     private LocalDate serviceEndDate;
-    private BigDecimal serviceSalary;
+    private BigDecimal serviceFulltimeSalary;
     /**
      * @implSpec Waarde tussen 0 en 100
      */
@@ -142,12 +142,12 @@ public class Deelnemer {
         this.serviceEndDate = serviceEndDate;
     }
 
-    public BigDecimal getServiceSalary() {
-        return serviceSalary;
+    public BigDecimal getServiceFulltimeSalary() {
+        return serviceFulltimeSalary;
     }
 
-    public void setServiceSalary(BigDecimal serviceSalary) {
-        this.serviceSalary = serviceSalary;
+    public void setServiceFulltimeSalary(BigDecimal serviceFulltimeSalary) {
+        this.serviceFulltimeSalary = serviceFulltimeSalary;
     }
 
     public BigDecimal getServiceParttimePercentage() {
