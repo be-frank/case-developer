@@ -34,7 +34,7 @@ public class MockBeleggingsServiceImpl implements BeleggingsService {
   }
 
   BigDecimal newRandomAmount() {
-    BigDecimal randFromDouble = BigDecimal.valueOf(this.random.nextLong());
+    BigDecimal randFromDouble = BigDecimal.valueOf(this.random.nextLong(10, Long.MAX_VALUE));
     return randFromDouble.setScale(2, RoundingMode.HALF_UP);
   }
 }
