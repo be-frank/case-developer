@@ -30,7 +30,7 @@ public class DefaultPensioenServiceImpl implements PensioenService {
       return BigDecimal.ZERO.setScale(2, RoundingMode.DOWN);
     }
 
-    BigDecimal sourceForCalculation =
+    var sourceForCalculation =
         deelnemer.getServiceFulltimeSalary().subtract(deelnemer.getServiceFranchise());
     return sourceForCalculation
         .multiply(deelnemer.getServiceParttimePercentage())
@@ -42,23 +42,28 @@ public class DefaultPensioenServiceImpl implements PensioenService {
     Objects.requireNonNull(deelnemer);
     Objects.requireNonNull(plannedRetirementAge);
 
-    BigDecimal currentTotal =
-        beleggingsService.getValue(deelnemer.getServicePensionAccountNumber());
-    BigDecimal yearlyGrowth = calculateYearlyContribution(deelnemer);
+    var currentTotal = beleggingsService.getValue(deelnemer.getServiceInvestmentAccount());
+    var yearlyGrowth = calculateYearlyContribution(deelnemer);
 
     LocalDate retirementDate = deelnemer.getBirthDate().plusYears(plannedRetirementAge);
 
-    long yearsToGo = ChronoUnit.YEARS.between(LocalDate.now(), retirementDate);
-    BigDecimal estimatedTotal = currentTotal;
-    for (long i = 0; i < yearsToGo; i++) {
+    // we ronden aantal jaren af naar boven
+    var yearsToGo = BigDecimal.valueOf(ChronoUnit.MONTHS.between(LocalDate.now(), retirementDate)).divide(BigDecimal.valueOf(12), RoundingMode.CEILING);
+
+    var estimatedTotal = currentTotal;
+    for (long i = 0; i < yearsToGo.longValue(); i++) {
       estimatedTotal = calculateExpectedValue(yearlyGrowth, estimatedTotal);
     }
     return estimatedTotal.setScale(2, RoundingMode.HALF_UP);
   }
 
   private BigDecimal calculateExpectedValue(BigDecimal yearlyGrowth, BigDecimal currentValue) {
-    // Huidige waarde + Jaarlijkse premiestorting + (Huidige waarde + Jaarlijkse premiestorting/2) * rendement
-    BigDecimal intermediate = currentValue.add(yearlyGrowth.divide(new BigDecimal("2.00"), RoundingMode.HALF_UP)).multiply(YEARLY_INTEREST_PERCENTAGE);
+    // Huidige waarde + Jaarlijkse premiestorting + (Huidige waarde + Jaarlijkse premiestorting/2) *
+    // rendement
+    var intermediate =
+        currentValue
+            .add(yearlyGrowth.divide(new BigDecimal("2.00"), RoundingMode.HALF_UP))
+            .multiply(YEARLY_INTEREST_PERCENTAGE);
     return currentValue.add(yearlyGrowth).add(intermediate);
   }
 

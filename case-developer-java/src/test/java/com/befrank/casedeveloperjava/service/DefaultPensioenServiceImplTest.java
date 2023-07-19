@@ -36,7 +36,7 @@ class DefaultPensioenServiceImplTest {
       Integer retirementAge,
       BigDecimal expectedAmount) {
     given(this.beleggingsService.getValue(anyLong())).willReturn(currentPensionValue);
-    BigDecimal estimatedTotalAmount =
+    var estimatedTotalAmount =
         this.pensioenService.calculateTotalEstimateForEndDate(deelnemer, retirementAge);
     assertEquals(expectedAmount, estimatedTotalAmount);
   }
@@ -46,20 +46,41 @@ class DefaultPensioenServiceImplTest {
     // Arguments: deelnemer, currentPensionValue, retirementAge, expectedAmount
     return Stream.of(
         Arguments.of(
-            getTestDeelnemer(), new BigDecimal("100000.00"), 61, new BigDecimal("104802.68")),
+            getTestDeelnemer(LocalDate.now().minusYears(60)),
+            new BigDecimal("100000.00"),
+            61,
+            new BigDecimal("104802.68")),
         Arguments.of(
-            getTestDeelnemer(), new BigDecimal("100000.00"), 65, new BigDecimal("125498.08")));
+            getTestDeelnemer(LocalDate.now().minusYears(60).minusDays(45)),
+            new BigDecimal("100000.00"),
+            61,
+            new BigDecimal("104802.68")),
+        Arguments.of(
+            getTestDeelnemer(LocalDate.now().minusYears(61)),
+            new BigDecimal("100000.00"),
+            61,
+            new BigDecimal("100000.00")),
+        Arguments.of(
+            getTestDeelnemer(LocalDate.now().minusYears(61).minusDays(45)),
+            new BigDecimal("100000.00"),
+            61,
+            new BigDecimal("100000.00")),
+        Arguments.of(
+            getTestDeelnemer(LocalDate.now().minusYears(60)),
+            new BigDecimal("100000.00"),
+            65,
+            new BigDecimal("125498.08")));
   }
 
-  private static Deelnemer getTestDeelnemer() {
-    Deelnemer testDeelnemer = new Deelnemer();
+  private static Deelnemer getTestDeelnemer(LocalDate birthDate) {
+    var testDeelnemer = new Deelnemer();
     testDeelnemer.setName("Henk" + RandomGenerator.getDefault().nextInt());
-    testDeelnemer.setBirthDate(LocalDate.now().minusYears(60).plusMonths(5).plusDays(4));
+    testDeelnemer.setBirthDate(birthDate);
     testDeelnemer.setServiceFulltimeSalary(new BigDecimal("60000"));
     testDeelnemer.setServiceParttimePercentage(new BigDecimal("0.80"));
     testDeelnemer.setServiceFranchise(new BigDecimal("15599.00"));
     testDeelnemer.setServicePremiumPercentage(new BigDecimal("0.05"));
-    testDeelnemer.setServicePensionAccountNumber(RandomGenerator.getDefault().nextLong());
+    testDeelnemer.setServiceInvestmentAccount(RandomGenerator.getDefault().nextLong());
     return testDeelnemer;
   }
 }

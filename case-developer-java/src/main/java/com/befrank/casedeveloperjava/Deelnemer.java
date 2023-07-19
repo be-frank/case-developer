@@ -40,7 +40,7 @@ public class Deelnemer {
      * @implSpec Waarde tussen 0 en 100
      */
     private BigDecimal servicePremiumPercentage;
-    private Long servicePensionAccountNumber;
+    private Long serviceInvestmentAccount;
 
     public Long getId() {
         return id;
@@ -174,11 +174,11 @@ public class Deelnemer {
         this.servicePremiumPercentage = servicePremiumPercentage;
     }
 
-    public Long getServicePensionAccountNumber() {
-        return servicePensionAccountNumber;
+    public Long getServiceInvestmentAccount() {
+        return serviceInvestmentAccount;
     }
 
-    public void setServicePensionAccountNumber(Long servicePensionAccountNumber) {
-        this.servicePensionAccountNumber = servicePensionAccountNumber;
+    public void setServiceInvestmentAccount(Long serviceInvestmentAccount) {
+        this.serviceInvestmentAccount = serviceInvestmentAccount;
     }
 }
