@@ -3,10 +3,10 @@ Database available at 'jdbc:h2:mem:mydb'
 
 Not done BE:
 - openapi.yaml
-- aparte REST resources
 - simpele mapping, geen mapstruct o.i.d.
 - foutafhandeling
 - Json ProblemDetail
+- Content negotiation (Consumes/Produces)
 - HATEOAS
 - logging
 - validatie (api/domain/jpa)

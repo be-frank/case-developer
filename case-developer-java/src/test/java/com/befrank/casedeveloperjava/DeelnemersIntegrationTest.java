@@ -1,9 +1,7 @@
 package com.befrank.casedeveloperjava;
 
-import com.befrank.casedeveloperjava.domain.Deelnemer;
 import com.befrank.casedeveloperjava.domain.DeelnemersRepository;
 import com.befrank.casedeveloperjava.testdata.Deelnemers;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +13,6 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.hasSize;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -29,8 +26,6 @@ class DeelnemersIntegrationTest {
 
     @Autowired
     private DeelnemersRepository deelnemersRepository;
-    @Autowired
-    private ObjectMapper objectMapper;
     @Autowired
     private MockMvc mockMvc;
 
@@ -72,13 +67,12 @@ class DeelnemersIntegrationTest {
 
     @Test
     void findDeelnemer() throws Exception {
-        final String contentAsString = mockMvc
+        mockMvc
                 .perform(get(URI + "/" + Deelnemers.Jane.getDeelnemerID().id()))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andReturn().getResponse().getContentAsString();
-
-        final var deelnemer = objectMapper.readValue(contentAsString, Deelnemer.class);
-        assertEquals(Deelnemers.Jane, deelnemer);
+                .andExpect(jsonPath("$.id").value(Deelnemers.Jane.getDeelnemerID().id().toString()))
+                .andExpect(jsonPath("$.naam").value(Deelnemers.Jane.getNaam()))
+                .andExpect(jsonPath("$.email").value(Deelnemers.Jane.getEmail().emailadres()));
     }
 }
