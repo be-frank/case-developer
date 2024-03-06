@@ -1,0 +1,11 @@
+
+<div class="form-floating w-50">
+  <select name="deelnemers" id="deelnemers" class="form-select">
+    <option *ngFor="let deelnemer of deelnemers" value="{{ deelnemer.id}}">
+      {{ deelnemer.naam }} - {{ deelnemer.email }}
+    </option>
+  </select>
+  <label for="deelnemers">
+    Selecteer een deelnemer:
+  </label>
+</div>
