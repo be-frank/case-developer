@@ -13,3 +13,9 @@ Not done BE:
 - security
 - authenticatie/autorisatie
 - ...
+
+Not done FE:
+- unit testing
+- e2e testing
+- foutafhandeling
+- ...

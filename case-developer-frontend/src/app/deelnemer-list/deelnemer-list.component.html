@@ -16,5 +16,5 @@
 <div class="row" *ngIf="selectedDeelnemer">
   <app-deelnemer-details [deelnemerID]="selectedDeelnemer.id"></app-deelnemer-details>
 
-  <app-berekening></app-berekening>
+  <app-berekening [deelnemerID]="selectedDeelnemer.id"></app-berekening>
 </div>

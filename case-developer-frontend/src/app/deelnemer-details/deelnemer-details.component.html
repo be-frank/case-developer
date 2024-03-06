@@ -1,9 +1,8 @@
 <div class="deelnemer-details form-floating w-50" *ngIf="deelnemerDetails">
   <div class="card">
-<!--    {{ deelnemerDetails.id }}-->
     <h1>{{ deelnemerDetails.naam }}</h1>
     <p>
-    {{ deelnemerDetails.geboortedatum }}<br>
+    {{ deelnemerDetails.geboortedatum | date:'dd-MM-y'}}<br>
     {{ deelnemerDetails.email }}
     </p>
     <address>

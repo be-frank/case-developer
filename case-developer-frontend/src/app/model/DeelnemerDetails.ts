@@ -4,7 +4,7 @@ export class DeelnemerDetails {
   id: string;
   naam: string;
   email: string;
-  geboortedatum: string;
+  geboortedatum: Date;
 
   adres: Adres;
 

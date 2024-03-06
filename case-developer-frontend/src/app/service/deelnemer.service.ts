@@ -9,10 +9,9 @@ import {DeelnemerDetails} from "../model/DeelnemerDetails";
 })
 export class DeelnemerService {
 
-  private endpoint: string;
+  private readonly endpoint =  'http://localhost:8080/api/deelnemers';
 
   constructor(private http: HttpClient) {
-    this.endpoint = 'http://localhost:8080/api/deelnemers';
   }
 
   public findAll(): Observable<Deelnemer[]> {

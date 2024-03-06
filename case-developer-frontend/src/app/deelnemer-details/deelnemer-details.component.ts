@@ -1,13 +1,14 @@
 import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {DeelnemerService} from "../service/deelnemer.service";
 import {DeelnemerDetails} from "../model/DeelnemerDetails";
-import {NgIf} from "@angular/common";
+import {DatePipe, NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-deelnemer-details',
   standalone: true,
   imports: [
-    NgIf
+    NgIf,
+    DatePipe
   ],
   templateUrl: './deelnemer-details.component.html',
   styleUrl: './deelnemer-details.component.css'
@@ -25,12 +26,10 @@ export class DeelnemerDetailsComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log("Reloading...");
     this.loadDeelnemerDetails();
   }
 
   private loadDeelnemerDetails() {
-    console.log("Searching for deelnemer details...");
     this.deelnemerService.find(this.deelnemerID)
       .subscribe(data => {
         this.OnDataUpdate(data);
