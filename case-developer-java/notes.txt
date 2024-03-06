@@ -18,4 +18,5 @@ Not done FE:
 - unit testing
 - e2e testing
 - foutafhandeling
+- dropdown deelnemers i.p.v. ingelogde gebruiker (/user/me o.i.d,)
 - ...

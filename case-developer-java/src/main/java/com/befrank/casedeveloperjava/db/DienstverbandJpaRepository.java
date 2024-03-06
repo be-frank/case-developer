@@ -1,11 +1,9 @@
 package com.befrank.casedeveloperjava.db;
 
-import com.befrank.casedeveloperjava.db.model.Deelnemer;
+import com.befrank.casedeveloperjava.db.model.Dienstverband;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
-
 @Repository
-public interface DeelnemersJpaRepository extends JpaRepository<Deelnemer, UUID> {
+public interface DienstverbandJpaRepository extends JpaRepository<Dienstverband, Long> {
 }
