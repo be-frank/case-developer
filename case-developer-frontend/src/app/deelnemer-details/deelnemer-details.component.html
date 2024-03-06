@@ -1,0 +1,14 @@
+<div class="deelnemer-details form-floating w-50" *ngIf="deelnemerDetails">
+  <div class="card">
+<!--    {{ deelnemerDetails.id }}-->
+    <h1>{{ deelnemerDetails.naam }}</h1>
+    <p>
+    {{ deelnemerDetails.geboortedatum }}<br>
+    {{ deelnemerDetails.email }}
+    </p>
+    <address>
+      {{ deelnemerDetails.adres.straatnaam }} {{ deelnemerDetails.adres.huisnummer }}<br>
+      {{ deelnemerDetails.adres.postcode }} {{ deelnemerDetails.adres.woonplaats }}<br>
+    </address>
+  </div>
+</div>

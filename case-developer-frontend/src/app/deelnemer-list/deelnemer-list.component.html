@@ -1,6 +1,8 @@
 
 <div class="form-floating w-50">
-  <select name="deelnemers" id="deelnemers" class="form-select">
+  <select name="deelnemers" id="deelnemers" class="form-select"
+          #deelnemersDropdown (change)="onSelectedDeelnemer(deelnemersDropdown.value)" >
+    <option></option>
     <option *ngFor="let deelnemer of deelnemers" value="{{ deelnemer.id}}">
       {{ deelnemer.naam }} - {{ deelnemer.email }}
     </option>
@@ -8,4 +10,11 @@
   <label for="deelnemers">
     Selecteer een deelnemer:
   </label>
+</div>
+<hr>
+
+<div class="row" *ngIf="selectedDeelnemer">
+  <app-deelnemer-details [deelnemerID]="selectedDeelnemer.id"></app-deelnemer-details>
+
+  <app-berekening></app-berekening>
 </div>

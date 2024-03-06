@@ -21,7 +21,7 @@ public class CaseBeFrankDeveloperJavaApplication {
             .deelnemerID(new DeelnemerID(UUID.randomUUID()))
             .naam("John")
             .geboortedatum(LocalDate.now().minusYears(60))
-            .email(new Email("wim@example.com"))
+            .email(new Email("john@example.com"))
             .adres(Adres.builder()
                     .straatnaam("Theo Snoekstraat")
                     .huisnummer("3")

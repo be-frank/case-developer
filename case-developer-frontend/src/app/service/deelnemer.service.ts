@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {Deelnemer} from "../model/Deelnemer";
+import {DeelnemerDetails} from "../model/DeelnemerDetails";
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,6 @@ export class DeelnemerService {
   }
 
   public find(deelnemerID: string) {
-    return this.http.get<Deelnemer>(this.endpoint + "/" + deelnemerID);
+    return this.http.get<DeelnemerDetails>(this.endpoint + "/" + deelnemerID);
   }
 }
