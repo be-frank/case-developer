@@ -1,5 +1,5 @@
 export class Waardeberekening {
   deelnemerID: string;
-  ingangsdatum: Date;
+  pensioenleeftijd: number;
   waarde: number;
 }

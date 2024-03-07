@@ -13,9 +13,9 @@ export class WaardeberekeningService {
   constructor(private http: HttpClient) {
   }
 
-  public bereken(ingangsdatum: string, deelnemerID: string): Observable<Waardeberekening> {
+  public bereken(pensioenleeftijd: string, deelnemerID: string): Observable<Waardeberekening> {
     const options = {
-      params: new HttpParams().set('deelnemerID', deelnemerID).set('ingangsdatum', ingangsdatum)
+      params: new HttpParams().set('deelnemerID', deelnemerID).set('pensioenleeftijd', pensioenleeftijd)
     }
     return this.http.get<Waardeberekening>(this.endpoint, options);
   }

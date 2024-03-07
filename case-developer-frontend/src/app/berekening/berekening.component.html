@@ -3,19 +3,18 @@
 <div class="form-floating w-50">
   <form>
     <div class="form-group">
-      <label for="pensioendatum">Gewenste pensioendatum</label>
-      <input #pensioendatum type="date" class="form-control" id="pensioendatum" aria-describedby="pensioendatumHelp"
-             [min]="today | date:'y-MM-dd'"
-             [value]="today | date:'y-MM-dd'">
-      <small id="pensioendatumHelp" class="form-text text-muted">Voer hier de pensioendatum op waarop u met pensioen zou
-        willen gaan.</small>
+      <label for="pensioenleeftijdFormInput">Gewenste pensioenleeftijd</label>
+      <input #pensioenleeftijdFormInput type="number" class="form-control" id="pensioenleeftijdFormInput" aria-describedby="pensioenleeftijdFormInputHelp"
+             [min]="leeftijd"
+             max="75"
+             [value]="pensioenleeftijd">
+      <small id="pensioenleeftijdFormInputHelp" class="form-text text-muted">Vul hier uw leeftijd in waarop u met pensioen zou willen gaan.</small>
     </div>
-    <button class="btn btn-primary" type="button" (click)="berekenPensioenwaarde(pensioendatum.value)">Bereken</button>
+    <button class="btn btn-primary" type="button" (click)="berekenPensioenwaarde(pensioenleeftijdFormInput.value)">Bereken</button>
   </form>
 </div>
 
 <div id="resultaat" class="form-floating w-100" *ngIf="waardeberekening">
-  <h4>Resultaat:</h4>
-  <p>Bij een ingangsdatum van <strong>{{ waardeberekening.ingangsdatum | date:'dd-MM-y' }}</strong>
+  <p>Bij een pensioenleeftijd van <strong>{{ waardeberekening.pensioenleeftijd }}</strong>
     is de te verwachte waarde van uw pensioenpot <strong>{{ waardeberekening.waarde | currency: 'EUR' }}</strong></p>
 </div>
