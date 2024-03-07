@@ -1,13 +1,9 @@
-
 export class DeelnemerDetails {
-
   id: string;
   naam: string;
   email: string;
   geboortedatum: Date;
-
   adres: Adres;
-
 }
 
 export class Adres {

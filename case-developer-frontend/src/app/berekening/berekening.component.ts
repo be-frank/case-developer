@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {CurrencyPipe, DatePipe, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {WaardeberekeningService} from "../service/waardeberekening.service";
@@ -17,7 +17,7 @@ import {Deelnemer} from "../model/Deelnemer";
   templateUrl: './berekening.component.html',
   styleUrl: './berekening.component.css'
 })
-export class BerekeningComponent implements OnInit, OnChanges {
+export class BerekeningComponent implements OnChanges {
 
   @Input() deelnemer!: Deelnemer;
 
@@ -26,9 +26,6 @@ export class BerekeningComponent implements OnInit, OnChanges {
   waardeberekening: Waardeberekening | null;
 
   constructor(private waardeberekeningService: WaardeberekeningService) {
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {

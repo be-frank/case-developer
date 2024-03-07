@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {DeelnemerService} from "../service/deelnemer.service";
 import {DeelnemerDetails} from "../model/DeelnemerDetails";
 import {DatePipe, NgIf} from "@angular/common";
@@ -13,16 +13,13 @@ import {DatePipe, NgIf} from "@angular/common";
   templateUrl: './deelnemer-details.component.html',
   styleUrl: './deelnemer-details.component.css'
 })
-export class DeelnemerDetailsComponent implements OnInit, OnChanges {
+export class DeelnemerDetailsComponent implements OnChanges {
 
   @Input() deelnemerID!: string;
 
   deelnemerDetails: DeelnemerDetails;
 
   constructor(private deelnemerService: DeelnemerService) {
-  }
-
-  ngOnInit(): void {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
