@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Data
@@ -16,12 +17,14 @@ public class Deelnemer {
     private UUID id;
     private String naam;
     private String email;
+    private LocalDate geboortedatum;
 
     public static Deelnemer fromDomainObject(final com.befrank.casedeveloperjava.domain.Deelnemer entity) {
         return Deelnemer.builder()
                 .id(entity.getDeelnemerID().id())
                 .naam(entity.getNaam())
                 .email(entity.getEmail().emailadres())
+                .geboortedatum(entity.getGeboortedatum())
                 .build();
     }
 }

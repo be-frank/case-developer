@@ -2,6 +2,7 @@ package com.befrank.casedeveloperjava.api;
 
 import com.befrank.casedeveloperjava.api.resource.Deelnemer;
 import com.befrank.casedeveloperjava.api.resource.DeelnemerDetails;
+import com.befrank.casedeveloperjava.domain.DeelnemerID;
 import com.befrank.casedeveloperjava.domain.DeelnemersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -30,7 +31,7 @@ public class DeelnemersController {
 
     @GetMapping("/{id}")
     public ResponseEntity<DeelnemerDetails> getDeelnemer(@PathVariable("id") final UUID deelnemerID) {
-        final var deelnemer = deelnemersRepository.get(deelnemerID)
+        final var deelnemer = deelnemersRepository.findById(new DeelnemerID(deelnemerID))
                 .map(DeelnemerDetails::fromDomainObject)
                 .orElseThrow(() -> new DeelnemerNotFound(deelnemerID));
         return ResponseEntity.ok(deelnemer);

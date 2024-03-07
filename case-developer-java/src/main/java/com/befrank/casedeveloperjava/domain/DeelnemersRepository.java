@@ -8,9 +8,7 @@ public interface DeelnemersRepository {
 
     void add(final Deelnemer deelnemer);
 
-    void clear();
-
     Set<Deelnemer> findAll();
 
-    Optional<Deelnemer> get(final UUID deelnemerID);
+    Optional<Deelnemer> findById(final DeelnemerID deelnemerID);
 }

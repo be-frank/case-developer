@@ -1,9 +1,6 @@
 package com.befrank.casedeveloperjava;
 
-import com.befrank.casedeveloperjava.domain.DeelnemersRepository;
-import com.befrank.casedeveloperjava.testdata.Deelnemers;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
+import com.befrank.casedeveloperjava.db.DeelnemersJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -12,8 +9,6 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.UUID;
 
-import static com.befrank.casedeveloperjava.testdata.Deelnemers.Jane;
-import static com.befrank.casedeveloperjava.testdata.Deelnemers.John;
 import static org.hamcrest.Matchers.hasSize;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -27,22 +22,9 @@ class DeelnemersIntegrationTest {
     private static final String URI = "/api/deelnemers";
 
     @Autowired
-    private DeelnemersRepository deelnemersRepository;
+    private DeelnemersJpaRepository deelnemersJpaRepository;
     @Autowired
     private MockMvc mockMvc;
-
-    @BeforeEach
-    void setup() {
-        deelnemersRepository.clear();
-        // voeg twee deelnemers toe
-        deelnemersRepository.add(John);
-        deelnemersRepository.add(Jane);
-    }
-
-    @AfterEach
-    void teardown() {
-        deelnemersRepository.clear();
-    }
 
     @Test
     void findAllDeelnemers() throws Exception {
@@ -69,12 +51,16 @@ class DeelnemersIntegrationTest {
 
     @Test
     void findDeelnemer() throws Exception {
-        mockMvc
-                .perform(get(URI + "/" + Jane.getDeelnemerID().id()))
+        final var jane = deelnemersJpaRepository.findAll()
+                .stream()
+                .filter(deelnemer -> deelnemer.getNaam().equalsIgnoreCase("Jane"))
+                .findFirst().orElseThrow();
+
+        mockMvc.perform(get(URI + "/" + jane.getId()))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(Jane.getDeelnemerID().id().toString()))
-                .andExpect(jsonPath("$.naam").value(Jane.getNaam()))
-                .andExpect(jsonPath("$.email").value(Jane.getEmail().emailadres()));
+                .andExpect(jsonPath("$.id").value(jane.getId().toString()))
+                .andExpect(jsonPath("$.naam").value(jane.getNaam()))
+                .andExpect(jsonPath("$.email").value(jane.getEmail()));
     }
 }

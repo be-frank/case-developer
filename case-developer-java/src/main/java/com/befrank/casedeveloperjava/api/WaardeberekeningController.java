@@ -1,6 +1,8 @@
 package com.befrank.casedeveloperjava.api;
 
 import com.befrank.casedeveloperjava.api.resource.Waardeberekening;
+import com.befrank.casedeveloperjava.application.WaardeberekeningService;
+import com.befrank.casedeveloperjava.domain.DeelnemerID;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +18,16 @@ import java.util.UUID;
 @Slf4j
 public class WaardeberekeningController {
 
+    private final WaardeberekeningService waardeberekeningService;
+
     @GetMapping
     public ResponseEntity<Waardeberekening> berekenPensioenwaarde(
             @RequestParam(name = "deelnemerID", required = true) final UUID deelnemerID,
-            @RequestParam(name = "ingangsdatum", required = true) final LocalDate ingangsdatum) {
-        // TODO
+            @RequestParam(name = "pensioenleeftijd", required = true) final Integer pensioenleeftijd) {
+
         final var waarde = Double.valueOf(350_000.00);
-        final var berekening = new Waardeberekening(deelnemerID, ingangsdatum, waarde);
+//        final Double waarde = waardeberekeningService.berekenVerwachteWaarde(new DeelnemerID(deelnemerID), pensioenleeftijd);
+        final var berekening = new Waardeberekening(deelnemerID, pensioenleeftijd, waarde);
         return ResponseEntity.ok(berekening);
     }
 }

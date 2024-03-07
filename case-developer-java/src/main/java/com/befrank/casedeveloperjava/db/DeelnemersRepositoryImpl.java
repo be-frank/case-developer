@@ -5,7 +5,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 
 import java.sql.Date;
-import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -39,11 +38,6 @@ class DeelnemersRepositoryImpl implements DeelnemersRepository {
     }
 
     @Override
-    public void clear() {
-        jpaRepository.deleteAll();
-    }
-
-    @Override
     public Set<Deelnemer> findAll() {
         return jpaRepository.findAll()
                 .stream()
@@ -52,8 +46,8 @@ class DeelnemersRepositoryImpl implements DeelnemersRepository {
     }
 
     @Override
-    public Optional<Deelnemer> get(UUID deelnemerID) {
-        return jpaRepository.findById(deelnemerID)
+    public Optional<Deelnemer> findById(final DeelnemerID deelnemerID) {
+        return jpaRepository.findById(deelnemerID.id())
                 .map(this::toDomainObject);
     }
 
