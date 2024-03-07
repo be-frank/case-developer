@@ -1,9 +1,10 @@
 package com.befrank.casedeveloperjava;
 
-import com.befrank.casedeveloperjava.db.DeelnemersJpaRepository;
-import com.befrank.casedeveloperjava.db.model.Deelnemer;
+import com.befrank.casedeveloperjava.repository.DeelnemersJpaRepository;
+import com.befrank.casedeveloperjava.repository.model.Deelnemer;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -43,34 +44,20 @@ class WaardeberekeningIntegrationTest {
                 .findFirst().orElseThrow();
     }
 
-    @Test
-    void berekenPensioenpot61jaar() throws Exception {
-        // Wanneer een gewenste pensioenleeftijd van 61 jaar wordt ingevuld, dan levert dit een verwachte waarde op van 104.802,68 euro.
+    @ParameterizedTest
+    @CsvSource({"61,104802.68", "65,125498.08"})
+    void berekenPensioenPotOpBasisVanGewenstePensioenleeftijd(
+            final String gewenstePernsioenLeeftijd,
+            final String verwachteWaarde) throws Exception {
         final String deelnemerID = john.getId().toString();
-        final String pensioenleeftijd = "61";
-        mockMvc.perform(get(URI)
-                .param("deelnemerID", deelnemerID)
-                .param("pensioenleeftijd", pensioenleeftijd))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.deelnemerID").value(deelnemerID))
-                .andExpect(jsonPath("$.pensioenleeftijd").value(pensioenleeftijd))
-                .andExpect(jsonPath("$.waarde").value("104802.68"));
-    }
 
-    // FIXME Parametrized tests
-    @Test
-    void berekenPensioenpot65jaar() throws Exception {
-        // Wanneer een gewenste pensioenleeftijd van 65 jaar wordt ingevuld, dan levert dit een verwachte waarde op van 125.498,08 euro.
-        final String deelnemerID = john.getId().toString();
-        final String pensioenleeftijd = "65";
         mockMvc.perform(get(URI)
-                .param("deelnemerID", deelnemerID)
-                .param("pensioenleeftijd", pensioenleeftijd))
+                        .param("deelnemerID", deelnemerID)
+                        .param("pensioenleeftijd", gewenstePernsioenLeeftijd))
                 .andDo(print())
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.deelnemerID").value(deelnemerID))
-                .andExpect(jsonPath("$.pensioenleeftijd").value(pensioenleeftijd))
-                .andExpect(jsonPath("$.waarde").value("125498.08"));
+                .andExpect(jsonPath("$.pensioenleeftijd").value(gewenstePernsioenLeeftijd))
+                .andExpect(jsonPath("$.waarde").value(verwachteWaarde));
     }
 }

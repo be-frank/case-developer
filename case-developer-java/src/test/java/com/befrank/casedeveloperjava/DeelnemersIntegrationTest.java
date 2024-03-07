@@ -1,6 +1,6 @@
 package com.befrank.casedeveloperjava;
 
-import com.befrank.casedeveloperjava.db.DeelnemersJpaRepository;
+import com.befrank.casedeveloperjava.repository.DeelnemersJpaRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

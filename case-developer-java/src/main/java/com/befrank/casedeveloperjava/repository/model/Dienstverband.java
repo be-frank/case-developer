@@ -1,4 +1,4 @@
-package com.befrank.casedeveloperjava.db.model;
+package com.befrank.casedeveloperjava.repository.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

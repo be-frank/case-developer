@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.Period;
 
 @Data
 @Builder
@@ -16,4 +17,7 @@ public class Deelnemer {
     private Email email;
     private LocalDate geboortedatum;
 
+    public Integer getLeeftijd() {
+        return Period.between(geboortedatum, LocalDate.now()).getYears();
+    }
 }

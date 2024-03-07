@@ -1,8 +1,8 @@
 package com.befrank.casedeveloperjava;
 
-import com.befrank.casedeveloperjava.db.DeelnemersJpaRepository;
-import com.befrank.casedeveloperjava.db.DienstverbandJpaRepository;
-import com.befrank.casedeveloperjava.db.model.*;
+import com.befrank.casedeveloperjava.repository.DeelnemersJpaRepository;
+import com.befrank.casedeveloperjava.repository.DienstverbandJpaRepository;
+import com.befrank.casedeveloperjava.repository.model.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
