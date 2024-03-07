@@ -22,4 +22,12 @@ public class Beleggingsrekening {
         // Voor nu hardcoded
         return 3.0;
     }
+
+    public Double prognose(final int jarenTotPensioen, final double jaarlijksePremieStorting) {
+        double waarde = totaleWaarde();
+        for (int i = 0; i < jarenTotPensioen; i++) {
+            waarde = waarde + jaarlijksePremieStorting + (waarde + (jaarlijksePremieStorting / 2)) * (jaarlijksRendementBeleggingen() / 100);
+        }
+        return Math.floor(waarde * 100) / 100;
+    }
 }
