@@ -1,4 +1,4 @@
-package com.befrank.casedeveloperjava.domain;
+package com.befrank.casedeveloperjava.domain.deelnemer;
 
 import lombok.Builder;
 

@@ -2,8 +2,8 @@ package com.befrank.casedeveloperjava.api;
 
 import com.befrank.casedeveloperjava.api.resource.Deelnemer;
 import com.befrank.casedeveloperjava.api.resource.DeelnemerDetails;
-import com.befrank.casedeveloperjava.domain.DeelnemerID;
-import com.befrank.casedeveloperjava.domain.DeelnemersRepository;
+import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemerID;
+import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

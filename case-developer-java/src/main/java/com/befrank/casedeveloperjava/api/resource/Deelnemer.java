@@ -19,7 +19,7 @@ public class Deelnemer {
     private String email;
     private LocalDate geboortedatum;
 
-    public static Deelnemer fromDomainObject(final com.befrank.casedeveloperjava.domain.Deelnemer entity) {
+    public static Deelnemer fromDomainObject(final com.befrank.casedeveloperjava.domain.deelnemer.Deelnemer entity) {
         return Deelnemer.builder()
                 .id(entity.getDeelnemerID().id())
                 .naam(entity.getNaam())

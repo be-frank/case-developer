@@ -2,15 +2,13 @@ package com.befrank.casedeveloperjava.api;
 
 import com.befrank.casedeveloperjava.api.resource.Waardeberekening;
 import com.befrank.casedeveloperjava.application.WaardeberekeningService;
-import com.befrank.casedeveloperjava.domain.Deelnemer;
-import com.befrank.casedeveloperjava.domain.DeelnemerID;
-import com.befrank.casedeveloperjava.domain.DeelnemersRepository;
+import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemerID;
+import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemersRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDate;
 import java.util.UUID;
 
 @RestController

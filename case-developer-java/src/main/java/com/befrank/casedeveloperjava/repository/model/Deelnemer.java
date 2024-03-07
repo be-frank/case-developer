@@ -1,7 +1,7 @@
 package com.befrank.casedeveloperjava.repository.model;
 
-import com.befrank.casedeveloperjava.domain.DeelnemerID;
-import com.befrank.casedeveloperjava.domain.Email;
+import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemerID;
+import com.befrank.casedeveloperjava.domain.deelnemer.Email;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -36,12 +36,12 @@ public class Deelnemer {
     @JoinColumn(name = "ADRES_ID", referencedColumnName = "ID")
     private Adres adres;
 
-    public com.befrank.casedeveloperjava.domain.Deelnemer toDomainObject() {
-        return com.befrank.casedeveloperjava.domain.Deelnemer.builder()
+    public com.befrank.casedeveloperjava.domain.deelnemer.Deelnemer toDomainObject() {
+        return com.befrank.casedeveloperjava.domain.deelnemer.Deelnemer.builder()
                 .deelnemerID(new DeelnemerID(id))
                 .naam(naam)
                 .geboortedatum(geboortedatum.toLocalDate())
-                .adres(com.befrank.casedeveloperjava.domain.Adres.builder()
+                .adres(com.befrank.casedeveloperjava.domain.deelnemer.Adres.builder()
                         .straatnaam(adres.getStraatnaam())
                         .huisnummer(adres.getHuisnummer())
                         .postcode(adres.getPostcode())

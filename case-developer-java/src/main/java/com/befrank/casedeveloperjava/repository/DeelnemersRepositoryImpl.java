@@ -1,6 +1,8 @@
 package com.befrank.casedeveloperjava.repository;
 
-import com.befrank.casedeveloperjava.domain.*;
+import com.befrank.casedeveloperjava.domain.deelnemer.Deelnemer;
+import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemerID;
+import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemersRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 

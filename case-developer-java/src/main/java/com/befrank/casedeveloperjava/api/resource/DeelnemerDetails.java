@@ -12,7 +12,7 @@ public class DeelnemerDetails extends Deelnemer {
     private LocalDate geboortedatum;
     private Adres adres;
 
-    public static DeelnemerDetails fromDomainObject(final com.befrank.casedeveloperjava.domain.Deelnemer entity) {
+    public static DeelnemerDetails fromDomainObject(final com.befrank.casedeveloperjava.domain.deelnemer.Deelnemer entity) {
         final var details = new DeelnemerDetails();
         details.setId(entity.getDeelnemerID().id());
         details.setNaam(entity.getNaam());
