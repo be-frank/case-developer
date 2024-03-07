@@ -24,9 +24,9 @@ public class Pensioenregeling {
     private Werkgever werkgever;
 
     @Column(name = "FRANCHISE")
-    private Double franchise;
+    private double franchise;
 
     @Column(name = "BESCHIKBARE_PREMIE_PERCENTAGE")
-    private Double beschikbarePremiePercentage;
+    private double beschikbarePremiePercentage;
 
 }

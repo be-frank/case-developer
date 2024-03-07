@@ -5,7 +5,6 @@ import com.befrank.casedeveloperjava.application.WaardeberekeningService;
 import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemerID;
 import com.befrank.casedeveloperjava.domain.deelnemer.DeelnemersRepository;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,6 @@ import java.util.UUID;
 @RequiredArgsConstructor
 @RequestMapping("/api/waardeberekening")
 @CrossOrigin(originPatterns = "http://localhost:[*]")
-@Slf4j
 public class WaardeberekeningController {
 
     private final DeelnemersRepository deelnemersRepository;
@@ -23,8 +21,8 @@ public class WaardeberekeningController {
 
     @GetMapping
     public ResponseEntity<Waardeberekening> berekenPensioenwaarde(
-            @RequestParam(name = "deelnemerID", required = true) final UUID deelnemerID,
-            @RequestParam(name = "pensioenleeftijd", required = true) final Integer gewenstePensioenleeftijd) {
+            @RequestParam(name = "deelnemerID") final UUID deelnemerID,
+            @RequestParam(name = "pensioenleeftijd") final Integer gewenstePensioenleeftijd) {
         final var deelnemer = deelnemersRepository
                 .findById(new DeelnemerID(deelnemerID))
                 .orElseThrow(() -> new DeelnemerNotFound(deelnemerID));

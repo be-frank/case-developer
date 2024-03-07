@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 public class Dienstverband {
 
     private Deelnemer deelnemer;
-    private Double salaris;
-    private Double parttimePercentage;
+    private double salaris;
+    private double parttimePercentage;
 
     private Pensioenregeling pensioenregeling;
 
     private Pensioenrekening pensioenrekening;
 
-    public Double jaarlijksePremie() {
+    public double jaarlijksePremie() {
         double franchise = pensioenregeling.franchise();
         double beschikbarePRemiePercentage = pensioenregeling.beschikbarePremiePercentage();
         return (salaris - franchise) * (parttimePercentage / 100) * (beschikbarePRemiePercentage / 100);

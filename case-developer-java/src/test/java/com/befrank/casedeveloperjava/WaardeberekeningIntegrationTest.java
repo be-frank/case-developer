@@ -33,8 +33,7 @@ class WaardeberekeningIntegrationTest {
      * De franchise is 15.599,- en het beschikbare premie percentage is 5%.
      * Zie ook CaseBeFrankDeveloperJavaApplication.init().
      *
-     * Huidige waarde is 100.000,-
-     * Rendement is 3% per jaar.
+     * Waarde van beleggingen (extern beleggingsservice) is hardcoded op 100.000,- met een rendement van 3% per jaar.
      */
     @BeforeEach
     void setup() {

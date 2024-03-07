@@ -23,7 +23,7 @@ public class Beleggingsrekening {
         return 3.0;
     }
 
-    public Double prognose(final int jarenTotPensioen, final double jaarlijksePremieStorting) {
+    public double prognose(final int jarenTotPensioen, final double jaarlijksePremieStorting) {
         double waarde = totaleWaarde();
         for (int i = 0; i < jarenTotPensioen; i++) {
             waarde = waarde + jaarlijksePremieStorting + (waarde + (jaarlijksePremieStorting / 2)) * (jaarlijksRendementBeleggingen() / 100);

@@ -13,7 +13,7 @@ public class WaardeberekeningService {
     private final DienstverbandRepository dienstverbandRepository;
     private final BeleggingsserviceProxy beleggingsserviceProxy;
 
-    public Double berekenVerwachteWaarde(final Deelnemer deelnemer, final Integer gewenstePensioenleeftijd) {
+    public double berekenVerwachteWaarde(final Deelnemer deelnemer, final Integer gewenstePensioenleeftijd) {
         final var dienstverband = dienstverbandRepository
                 .findByDeelnemer(deelnemer)
                 .orElseThrow(() -> new IllegalArgumentException("Geen dienstverband gevonden."));

@@ -24,10 +24,10 @@ public class Dienstverband {
     private Deelnemer deelnemer;
 
     @Column(name = "SALARIS")
-    private Double salaris;
+    private double salaris;
 
     @Column(name = "PARTTIME_PERCENTAGE")
-    private Double parttimePercentage;
+    private double parttimePercentage;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "WERKGEVER_ID", referencedColumnName = "ID")
