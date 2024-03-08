@@ -29,7 +29,6 @@ export class BerekeningComponent implements OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // reset
     this.pensioenleeftijd = '67';
     this.waardeberekening = null;
     this.leeftijd = this.berekenLeeftijd(this.deelnemer.geboortedatum);
@@ -50,13 +49,6 @@ export class BerekeningComponent implements OnChanges {
       });
   }
 
-  // berekenPensioenwaarde(leeftijd: string) {
-  //   this.waardeberekeningService.bereken(leeftijd, this.deelnemer.id)
-  //     .subscribe(data => {
-  //       this.OnDataUpdate(data);
-  //     });
-  // }
-  //
   private OnDataUpdate(data: Waardeberekening) {
     this.waardeberekening = data;
   }
